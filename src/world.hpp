@@ -1,15 +1,23 @@
-#ifndef WORLD_HPP_INCLUDED
-#define WORLD_HPP_INCLUDED
+/*
+# Sub-module containing world functions
+#
+# This file is part of SMosMod.
+#  Copyright (c) 2017-2018, Imperial College London
+#  For licensing information, see the LICENSE file distributed with the SMosMod
+#  software package.
+*/
+
+#ifndef SRC_WORLD_HPP_
+#define SRC_WORLD_HPP_
 
 #include <iostream>
 
-class World
-{
-private:
+class World{
+ private:
   const double width;
   const double length;
 
-public:
+ public:
   // Constructors
   World(double w, double l);
 
@@ -19,4 +27,4 @@ public:
   double getArea();
 };
 
-#endif
+#endif  // SRC_WORLD_HPP_

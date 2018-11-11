@@ -12,9 +12,9 @@ addons:
     - g++-6
     - clang-3.8
 install:
-  - pip install flake8
+  - pip install -r requirements.txt
   - "[ $CXX = g++ ] && export CXX=g++-6 || true"
   - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
 script:
+  - cpplint
   - make
-  - flake8

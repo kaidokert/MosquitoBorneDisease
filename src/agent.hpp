@@ -1,18 +1,26 @@
-#ifndef AGENT_HPP_INCLUDED
-#define AGENT_HPP_INCLUDED
+/*
+# Sub-module containing agent functions
+#
+# This file is part of SMosMod.
+#  Copyright (c) 2017-2018, Imperial College London
+#  For licensing information, see the LICENSE file distributed with the SMosMod
+#  software package.
+*/
 
-class Agent
-{
-private:
+
+#ifndef SRC_AGENT_HPP_
+#define SRC_AGENT_HPP_
+
+class Agent {
+ private:
   double age;
 
-public:
+ public:
   // Constructors
-  Agent();
-  Agent(double a);
+  explicit Agent(double a);
 
   // Accessors
-  double getAge() {return age; };
+  double getAge() {return age; }
 };
 
-#endif
+#endif  // SRC_AGENT_HPP_
