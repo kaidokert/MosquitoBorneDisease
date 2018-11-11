@@ -5,11 +5,11 @@ OBJECTS=*.o
 
 everything:
 	$(CC) $(CFLAGS) -c $(SOURCES)
-	$(CC) $(OBJECTS) -o bin/run
+	$(CC) $(OBJECTS) -o run
 	rm -rf *.o
 
 all: $(OBJECTS)
-	$(CC) $(OBJECTS) -o bin/run
+	$(CC) $(OBJECTS) -o run
 
 main.o: src/main.cpp
 	$(CC) $(CFLAGS) -c src/main.cpp
