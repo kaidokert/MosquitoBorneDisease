@@ -29,5 +29,8 @@ simulation.o: src/simulation.cpp src/simulation.hpp
 location.o: src/location.cpp src/location.hpp
 	$(CC) $(CFLAGS) -c src/location.cpp
 
+mosquito.o: src/mosquito.cpp src/mosquito.hpp
+	$(CC) $(CFLAGS) -c src/mosquito.cpp
+
 clean:
 	rm -rf *.o
