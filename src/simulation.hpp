@@ -15,8 +15,8 @@
 
 class Simulation{
  private:
-   double t = 0.0;
-   World world;
+  double t = 0.0;
+  World world;
 
  public:
   // Constructors
