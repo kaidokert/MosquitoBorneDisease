@@ -3,8 +3,19 @@ language: cpp
 compiler:
  - gcc
  - clang
+ addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.8
+    packages:
+      - g++-6
+      - clang-3.8
 install:
   - pip install --user --upgrade pip
   - pip install --user -r requirements.txt
+  - "[ $CXX = g++ ] && export CXX=g++-6 || true"
+  - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
 script:
   - cpplint src/*
+  - make
