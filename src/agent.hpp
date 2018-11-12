@@ -12,12 +12,13 @@
 #define SRC_AGENT_HPP_
 
 class Agent {
- private:
-  double age;
+ protected:
+  double age {0.0};
 
  public:
   // Constructors
   explicit Agent(double a);
+  Agent() = default;
 
   // Accessors
   double getAge() {return age; }
