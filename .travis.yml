@@ -4,7 +4,7 @@ compiler:
  - gcc
  - clang
 install:
-  - pip install --upgrade pip
+  - pip install --user --upgrade pip
   - pip install .
   - pip install -r requirements.txt
 script:
