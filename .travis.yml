@@ -1,21 +1,107 @@
 sudo: false
+dist: trusty
 language: cpp
-compiler:
- - gcc
- - clang
- addons:
+
+addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
-      - llvm-toolchain-precise-3.8
     packages:
-      - g++-6
-      - clang-3.8
-install:
-  - pip install --user --upgrade pip
-  - pip install --user -r requirements.txt
-  - "[ $CXX = g++ ] && export CXX=g++-6 || true"
-  - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
+
+matrix:
+  include:
+
+  # XCode 9.3
+  - os: osx
+    osx_image: xcode9.3
+    env:
+    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    - CMAKE_OPTNS="-D CMAKE_BUILD_TYPE=Debug"
+
+  # GCC 5
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-5
+        - libboost-dev
+        - lcov
+    env:
+    - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+    - CMAKE_OPTNS="-D MBD_ENABLE_COVERAGE:BOOL=TRUE -D CMAKE_BUILD_TYPE=Debug -D TURN_OFF_CATCH_CPP17_UNCAUGHT_EXCEPTIONS=ON"
+
+  # GCC 6
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-6
+        - libboost-dev
+        - lcov
+    env:
+    - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+    - CMAKE_OPTNS="-D MBD_ENABLE_COVERAGE:BOOL=TRUE -D CMAKE_BUILD_TYPE=Debug -D TURN_OFF_CATCH_CPP17_UNCAUGHT_EXCEPTIONS=ON"
+
+  # GCC 7
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-7
+        - libboost-dev
+        - lcov
+    env:
+    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+    - CMAKE_OPTNS="-D MBD_ENABLE_COVERAGE:BOOL=TRUE -D CMAKE_BUILD_TYPE=Debug -D TURN_OFF_CATCH_CPP17_UNCAUGHT_EXCEPTIONS=ON"
+
+  # Clang 4.0
+  - os: linux
+    sudo: required
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-trusty-4.0
+        packages:
+        - clang-4.0
+        - libboost-dev
+    env:
+    - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+    - CMAKE_OPTNS="-D MBD_USE_CLANG_TIDY:BOOL=TRUE -D MBD_MEMCHECK:BOOL=TRUE -D CMAKE_BUILD_TYPE=Debug -D TURN_OFF_CATCH_CPP17_UNCAUGHT_EXCEPTIONS=ON"
+
+  # Clang 5.0
+  - os: linux
+    sudo: required
+    addons:
+      apt:
+        sources:
+        - llvm-toolchain-trusty-5.0
+        packages:
+        - clang-5.0
+        - libboost-dev
+    env:
+    - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+    - CMAKE_OPTNS="-D MBD_USE_CLANG_TIDY:BOOL=TRUE -D MBD_MEMCHECK:BOOL=TRUE -D CMAKE_BUILD_TYPE=Debug -D TURN_OFF_CATCH_CPP17_UNCAUGHT_EXCEPTIONS=ON"
+
+before_install:
+- eval "${MATRIX_EVAL}"
+
 script:
-  - cpplint src/*
-  - make
+- cmake $CMAKE_OPTNS .
+- cmake --build . -- -j2
+- ctest -j2 --output-on-failure
+
+after_success:
+# Creating report
+- cd ${TRAVIS_BUILD_DIR}
+# capture coverage info
+- lcov --directory . --capture --output-file coverage.info
+# filter out system and catch headers
+- lcov --remove coverage.info '/usr/*' 'tests/catch.hpp' --output-file coverage.info
+# debug info
+- lcov --list coverage.info
+# Uploading report to CodeCov
+- bash <(curl -s https://codecov.io/bash) -X gcov || echo "Codecov did not collect coverage reports"

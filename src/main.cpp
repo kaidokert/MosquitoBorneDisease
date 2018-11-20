@@ -7,9 +7,14 @@
 #  software package.
 */
 
+#include <iostream>
+
 #include "world.hpp"
 #include "agent.hpp"
 
 int main() {
+
+    std::cout << "Hi Ben\n";
+
     return 0;
 }
