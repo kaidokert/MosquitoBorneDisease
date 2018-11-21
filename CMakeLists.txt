@@ -25,6 +25,7 @@ set (mbd_headers
      src/nonparasite.hpp
      src/simulation.hpp
      src/world.hpp
+     src/util/Vector.hpp
      )
 
 
@@ -59,6 +60,7 @@ endif ()
 add_executable (
         mbd_test
         tests/MbdTests.cpp
+        tests/TestVector.cpp
 )
 
 target_include_directories (mbd_test PRIVATE tests)

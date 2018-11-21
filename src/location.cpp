@@ -9,10 +9,10 @@
 
 #include "location.hpp"
 
-Location::Location(std::pair<double, double> coords) : coordinates(coords) {
+Location::Location(Coord2d coordinates) : coordinates(coordinates) {
   updateBlock();
 }
 
-void Location::updateBlock() {
-  block = 0;
-}
+void Location::updateBlock() { block = 0; }
+
+const Coord2d &Location::GetCoordinates() const { return coordinates; }

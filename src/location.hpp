@@ -12,20 +12,22 @@
 
 #include <utility>
 
+#include "util/Vector.hpp"
+using Coord2d = mbd::Vector<double, 2>;
+
 class Location {
- private:
-  std::pair<double, double> coordinates;
+private:
+  Coord2d coordinates;
   unsigned int block;
 
   // Update simulation block
   void updateBlock();
 
- public:
+public:
   // Constructors
-  explicit Location(std::pair<double, double> coords);
+  explicit Location(Coord2d coords);
 
-  // Accessor
-  std::pair<double, double> getCoordinates() { return coordinates; }
+  const Coord2d &GetCoordinates() const;
 };
 
-#endif  // SRC_LOCATION_HPP_
+#endif // SRC_LOCATION_HPP_
