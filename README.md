@@ -35,4 +35,24 @@ ctest
 
 
 #### Windows
-todo: fill this in
+1. Install [Visual Studio](https://visualstudio.microsoft.com/downloads/) (Community edition is free for open source contributors)
+1. Obtain the source code for this repository
+
+##### To build from Visual Studio
+1. `File | Open | CMake...` and select this repository's `CMakeLists.txt`. CMake will run automatically.
+1. You can build and run executables in a number of ways, for instance by right-clicking on `CMakeLists.txt` in the solution explorer and:
+    - `Build | mbd_test.exe`
+    - `Run Tests`
+
+##### To build from the command prompt
+1. Open `Developer Command Prompt for VS 20XX` and navigate to this repository
+```
+# Create a build directory
+mkdir /path/to/build/dir
+cd /path/to/build/dir
+
+# Configure and build project with CMake, and run tests with CTest
+cmake -G Ninja /path/to/source/dir
+cmake --build .
+ctest
+```
