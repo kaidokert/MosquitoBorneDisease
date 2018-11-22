@@ -9,10 +9,10 @@ addons:
 matrix:
   include:
 
-  # Windows
-  - os: windows
-    env:
-    - CMAKE_OPTNS="-D CMAKE_BUILD_TYPE=Debug"
+#  # Windows
+#  - os: windows
+#    env:
+#    - CMAKE_OPTNS="-D CMAKE_BUILD_TYPE=Debug"
 
   # XCode 9.3
   - os: osx
