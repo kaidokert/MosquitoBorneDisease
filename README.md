@@ -2,6 +2,7 @@
 
 [![Travis](https://travis-ci.com/ben18785/MosquitoBorneDisease.svg?branch=master)](https://travis-ci.com/ben18785/MosquitoBorneDisease)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/xsl6oivbxq8gvrlr?svg=true)](https://ci.appveyor.com/project/fcooper8472/mosquitobornedisease)
+[![BCH compliance](https://bettercodehub.com/edge/badge/ben18785/MosquitoBorneDisease?branch=master)](https://bettercodehub.com/)
 
 todo: add information about the software.
 
