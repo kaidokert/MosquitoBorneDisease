@@ -4,6 +4,7 @@
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/xsl6oivbxq8gvrlr?svg=true)](https://ci.appveyor.com/project/fcooper8472/mosquitobornedisease)
 [![BCH compliance](https://bettercodehub.com/edge/badge/ben18785/MosquitoBorneDisease?branch=master)](https://bettercodehub.com/)
 [![codecov](https://codecov.io/gh/ben18785/MosquitoBorneDisease/branch/master/graph/badge.svg)](https://codecov.io/gh/ben18785/MosquitoBorneDisease)
+[![Documentation](https://codedocs.xyz/ben18785/MosquitoBorneDisease.svg)](https://codedocs.xyz/ben18785/MosquitoBorneDisease/)
 
 todo: add information about the software.
 
